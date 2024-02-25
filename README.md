@@ -51,11 +51,17 @@ $\ = 3 (3 T(\frac{\frac{n}{3}}{3}) +(\frac{n}{3})^5) + n^5 $
 
 $\ = 9 T(\frac{n}{9}) + 3 (\frac{n}{3})^5 +n^5 $
 
-$$\ = 3^i T(\frac{n}{3^i}) + n^5 \cdot \sum_{j=0}^{i-1} 3^{i-1} \cdot (1/ 3^{i-1} )^5 $$
+$$\ = 3^i T(\frac{n}{3^i}) + \sum_{j=1}^{i-1} 3^{i-1} \cdot (\frac{n}{3^{i-1}} )^5 $$
 
 To solve for the base case to get our asymptotic complexity, we can substitute in $\ i = log_{3} n$.
 
-$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} -1} 3^{log_{3} n} \cdot (\frac{1}{3^{log_{3} n}})^5 $$
+$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + \sum_{j=1}^{{log_{3} n} -1} 3^{log_{3} n -1} \cdot (\frac{n}{3^{log_{3} n-1}})^5 $$
 
+$$\= n \cdot T(1) + n^5 $$.
 
+The behavior of the summation as it reaches $\ log_{3} n$ will be $\ n^5 + (n^5/3^4) + (n^5/9^4) +...$ 
+However this summation consists of smaller terms that in asymptotic analysis we disregard. It may approach something like $\ 2n^5$, but we also disregard the coefficient. 
+So the runtime analysis for this function is:
+
+$\ n \cdot 1 + n^5 \in O(n^5)$
 
