@@ -31,3 +31,31 @@ function mystery(n) {
 Add your answer to this markdown file. [This
 page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 might help with the notation for mathematical expressions.
+
+Mystery Function run time:
+The if statement takes constant time. +1
+The else statement takes much more. It recursively calls 3 times, each dividing n by 3. So this would be 3T(n/3) similar to divide and conquer sum. 
+var count = 0 takes constant time, +1.
+The first for loop runs $\ n^2$ times, the second for loop is nested and runs for n times, and the third for loop is nested inside the other two and runs $\ n^2$ times.
+$\ n^2 * n * n^2 = n^5 $. Disregarding the constant time, we have the recursive relation of 
+
+T(n) = 1 if $\ n \leq 1. $
+
+$\ T(n) = 3 T(\frac{n}{3}) + n^5$ ; else
+
+Solving Recurrance relation:
+
+$\ 3T(\frac{n}{3}) + n^5 $
+
+$\ = 3 (3 T(\frac{\frac{n}{3}}{3}) +(\frac{n}{3})^5) + n^5 $
+
+$\ = 9 T(\frac{n}{9}) + 3 (\frac{n}{3})^5 +n^5 $
+
+$$\ = 3^i T(\frac{n}{3^i}) + n^5 \cdot \sum_{j=0}^{i-1} 3^{i-1} \cdot (1/ 3^{i-1} )^5 $$
+
+To solve for the base case to get our asymptotic complexity, we can substitute in $\ i = log_{3} n$.
+
+$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} -1} 3^{log_{3} n} \cdot (\frac{1}{3^{log_{3} n}})^5 $$
+
+
+
