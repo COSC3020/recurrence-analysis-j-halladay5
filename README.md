@@ -55,9 +55,19 @@ $$\ = 3^i T(\frac{n}{3^i}) +  n^5 \cdot \sum_{j=0}^{i-1} 3^{i} \cdot (\frac{1}{3
 
 To solve for the base case to get our asymptotic complexity, we can substitute in $\ i = log_{3} n$.
 
-$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} 3^{log_{3} n} \cdot (\frac{1}{3})^{log_{3} n} $$
+$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} -1} 3^{log_{3} n} \cdot (\frac{1}{3})^{5 {log_{3} n}} $$
 
-The summation would give us n * $\ \frac{1}{n} $, simplifying to 1, and giving us $\ n^5 *1 $.
+$$\ = n \cdot T(\frac{n}{n}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} } (\frac{3^{log{3} n}}{3^{5 {log_{3} n}}}) $$
+
+$$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{3^{4{log_{3} n}}}) $$
+
+$$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{81^{{log_{3} n}}}) $$
+
+The behavior of the summation as it sums to $\ {log_{3} n}$  will sum all the terms up to $\ \frac{1}{n^4} $. Theses terms will all be multiplied by $\ n^5 $, 
+including the first term. When i = 0, the partial sum is 1, and when multiplied by $\ n^5$ will give us $\ n^5$. 
+As n increases, the terms $\ n^5 + \frac{n^5}{3^4} + \frac{n^5}{9^4} + \frac{n^5}{27^4} +... + \frac{n^5}{3^{4i}}$ are summed. We only focus on the largest 
+term in asymptotic complexity, and we can ignore any constants as well. That being said the summation when analyzed and simplified will be $\ n^5$. 
+This gives us: $\ n \cdot T(1) + n^5$.
 
 $$\= n \cdot T(1) + n^5 $$.
 
