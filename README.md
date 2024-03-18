@@ -63,10 +63,9 @@ $$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{3^{4{log_{3} n
 
 $$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{81^{{log_{3} n}}}) $$
 
-The behavior of the summation as it sums to $\ {log_{3} n}$  will sum all the terms up to $\ \frac{1}{n^4} $. Theses terms will all be multiplied by $\ n^5 $, 
-including the first term. When i = 0, the partial sum is 1, and when multiplied by $\ n^5$ will give us $\ n^5$. 
-As n increases, the terms $\ n^5 + \frac{n^5}{3^4} + \frac{n^5}{9^4} + \frac{n^5}{27^4} +... + \frac{n^5}{3^{4i}}$ are summed. We only focus on the largest 
-term in asymptotic complexity, and we can ignore any constants as well. That being said the summation when analyzed and simplified will be $\ n^5$. 
+The behavior of the summation as it sums to $\ {log_{3} n}$  will sum all the terms up to $\ \frac{1}{n^4} $. Theses terms are constants, and will not matter in our analysis later. 
+The summation sums the terms $\ 1 + \frac{1}{3^4} + \frac{1}{9^4} + \frac{1}{27^4} +... + \frac{1}{3^{4i}}$. These are all constants that will be multiplied by $\ n^5$ , so these can be ignored and omitted. 
+That being said the simplified summation is a constant value * $\ n^5 = c * n^5 $. In analysis, the constant factors are ignored, so this will be $\ n^5$. 
 This gives us: $\ n \cdot T(1) + n^5$.
 
 $$\= n \cdot T(1) + n^5 $$.
