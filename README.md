@@ -51,25 +51,22 @@ $\ = 3 (3 T(\frac{\frac{n}{3}}{3}) +(\frac{n}{3})^5) + n^5 $
 
 $\ = 9 T(\frac{n}{9}) + 3 (\frac{n}{3})^5 +n^5 $
 
-$$\ = 3^i T(\frac{n}{3^i}) +  n^5 \cdot \sum_{j=0}^{i-1} 3^{i} \cdot (\frac{1}{3} )^{5i} $$
+$$\ = 3^i T(\frac{n}{3^i}) +  \sum_{j=0}^{i-1} 3^{i} \cdot (\frac{n}{3^i} )^{5} $$
 
-To solve for the base case to get our asymptotic complexity, we can substitute in $\ i = log_{3} n$.
+To solve for the base case to get our asymptotic complexity, we can substitute in $\ i = log_{3} n$. 
 
-$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} -1} 3^{log_{3} n} \cdot (\frac{1}{3})^{5 {log_{3} n}} $$
+$$\ = 3^{log_{3} n} T(\frac{n}{3^{log_{3} n}}) + \sum_{j=0}^{{log_{3} n} -1} 3^{log_{3} n} \cdot (\frac{n}{3^{log_{3} n}})^{5} $$
+The summation in this case refers to the three nested for loops. Inside of those for loops, the count variable is increased. This will happen $\ n^5$ times. So the summation terms will add up to $\ n^5$, each time adding the iterations made in the recursive call. 
+So altogether, the summation will add up to $\ n^5$ . From this, we know our end behavior of our sum, and we can put that value in, $\ n^5$ .
 
-$$\ = n \cdot T(\frac{n}{n}) + n^5 \cdot \sum_{j=0}^{{log_{3} n} } (\frac{3^{log{3} n}}{3^{5 {log_{3} n}}}) $$
+$$\ = n \cdot T(\frac{n}{n}) + n^5 $$
 
-$$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{3^{4{log_{3} n}}}) $$
+$$\ = n \cdot T(1) + n^5 $$
 
-$$\ = n \cdot T(1) + n^5 \cdot \sum_{j=0}^{{log_{3} n}} (\frac{1}{81^{{log_{3} n}}}) $$
+T(1) = 1:
 
-The behavior of the summation as it sums to $\ {log_{3} n}$  will sum all the terms up to $\ \frac{1}{n^4} $. Theses terms are constants, and will not matter in our analysis later. 
-The summation sums the terms $\ 1 + \frac{1}{3^4} + \frac{1}{9^4} + \frac{1}{27^4} +... + \frac{1}{3^{4i}}$. These are all constants that will be multiplied by $\ n^5$ , so these can be ignored and omitted. 
-That being said the simplified summation is a constant value * $\ n^5 = c * n^5 $. In analysis, the constant factors are ignored, so this will be $\ n^5$. 
-This gives us: $\ n \cdot T(1) + n^5$.
-
-$$\= n \cdot T(1) + n^5 $$.
+$$\ = n + n^5 $$
 
 So the runtime analysis for this function is:
 
-$\ n \cdot 1 + n^5 \in O(n^5)$
+$\ n + n^5 \in O(n^5)$
